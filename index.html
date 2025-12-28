@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>30-Minute Nagging Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium feel -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- HEADER -->
+        <header>
+            <button id="back-btn" class="icon-btn hidden"><span class="material-icons">arrow_back</span></button>
+            <h1 id="page-title">30-Minute Nagging Timer</h1>
+            <button id="settings-btn" class="icon-btn"><span class="material-icons">settings</span></button>
+        </header>
+
+        <!-- VIEW: HOME -->
+        <main id="view-home" class="view active">
+            <div class="mode-container">
+                <button class="mode-card cleaning" onclick="startSession('cleaning')">
+                    <span class="material-icons large-icon">cleaning_services</span>
+                    <h2>房間收拾<br><span class="subtitle">Clean Up</span></h2>
+                </button>
+
+                <button class="mode-card rush" onclick="startSession('rush')">
+                    <span class="material-icons large-icon">timer_off</span>
+                    <h2>別偷懶快動作<br><span class="subtitle">Hurry Up</span></h2>
+                </button>
+            </div>
+        </main>
+
+        <!-- VIEW: TIMER SESSION -->
+        <main id="view-timer" class="view">
+            <div class="timer-content">
+                <div class="image-frame">
+                    <img id="nag-image" src="images/02.png" alt="Nagging Cat">
+                </div>
+
+                <div class="nag-bubble">
+                    <p id="nag-text">開始計時！加油！</p>
+                </div>
+
+                <div class="timer-display">
+                    <span id="timer-val">30:00</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- VIEW: SETTINGS -->
+        <main id="view-settings" class="view">
+            <div class="settings-container">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('cleaning')">Cleaning</button>
+                    <button class="tab-btn" onclick="switchTab('rush')">Rush</button>
+                </div>
+
+                <div class="input-group batch-input">
+                    <textarea id="new-nag-input" placeholder="輸入新的碎碎唸... (支援多行輸入)" rows="4"></textarea>
+                    <button id="add-nag-btn" onclick="addCustomNag()"><span class="material-icons">save</span></button>
+                </div>
+
+                <div class="list-header">已儲存的語句：</div>
+                <ul id="nag-list">
+                    <!-- List items will be injected here -->
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dialog Overlay -->
+    <div id="dialog-overlay" class="hidden">
+        <div class="dialog-box">
+            <h3 id="dialog-title">Title</h3>
+            <p id="dialog-msg">Message</p>
+            <button onclick="closeDialog()">OK</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="hidden">Message</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
