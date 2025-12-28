@@ -1,6 +1,6 @@
 // --- CONFIG ---
 const IMAGES = ['02.png', '39.png', '32.png', '08.png'];
-const TOTAL_SECONDS = 60; // 1 minute for testing
+const TOTAL_SECONDS = 30 * 60; // 30 minutes
 
 const DEFAULT_CLEANING = [
     "地上那坨是什麼？",
@@ -81,7 +81,7 @@ function startSession(mode) {
     updateTimerDisplay();
 
     // Initial Nag State
-    document.getElementById('nag-image').src = `images/${IMAGES[0]}`;
+    document.getElementById('nag-image').src = IMAGES[0];
     document.getElementById('nag-text').innerText = "開始計時！加油！";
     speak("開始計時！加油！");
 
@@ -124,8 +124,8 @@ function updateTimerDisplay() {
 
 // --- NAG LOGIC ---
 function scheduleNextNag() {
-    // Random 5 to 10 seconds (FAST TESTING)
-    const delay = Math.floor(Math.random() * (10 - 5 + 1) + 5) * 1000;
+    // Random 45 to 90 seconds
+    const delay = Math.floor(Math.random() * (90 - 45 + 1) + 45) * 1000;
 
     nagTimeout = setTimeout(() => {
         triggerNag();
@@ -136,7 +136,7 @@ function scheduleNextNag() {
 function triggerNag() {
     // 1. Change Image
     const randomImg = IMAGES[Math.floor(Math.random() * IMAGES.length)];
-    document.getElementById('nag-image').src = `images/${randomImg}`;
+    document.getElementById('nag-image').src = randomImg;
 
     // 2. Get Text
     const text = getRandomText();
